@@ -1,0 +1,88 @@
+/**
+ * Forms
+ */
+
+forms_module = true
+
+// Some defaults
+
+label
+    cursor pointer
+    display block
+    line-height ($baseLineHeight+$gapSize*2)
+
+textarea
+    resize vertical
+
+// Mixins
+
+tintInput($class = false, $color = false)
+    if $color
+        border-color $color
+    
+    background-color lighten($color or @border-color, 95%)
+    color darken(desaturate($color or @border-color, 50%), 60%)
+    box-shadow 0 0 3px rgba($color or @border-color, 0.3)
+    
+    &:focus
+        border-color darken($color or @border-color, 20%)
+        box-shadow 0 0 3px lighten($color or @border-color, 50%)
+
+input()
+    background #fff
+    border 1px solid
+    border-color $colorClasses[0][1]
+    border-radius 3px
+    box-sizing border-box
+    outline 0
+    padding ($gapSize - 1) $gapSize
+    transition background-color 0.2s ease-in, border-color 0.2s ease-in, color 0.2s ease-in
+    display block
+    width 100%
+    height auto
+    
+    &.small
+        padding 2px 6px
+    
+    &.big
+        font-size 150%
+        padding $gapSize*1.5
+    
+    tintInput()
+    applyColors(tintInput)
+
+// Default usage
+
+select,
+textarea,
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"]
+    input()
+
+select
+    padding ($columnGap - 2) $columnGap
+    &.big
+        padding ($columnGap*1.5 - 1) $columnGap
+
+if buttons_module == true
+    input[type="submit"]
+        @extend .button
+
+input[type="checkbox"],
+input[type="radio"]
+    vertical-align baseline
+    label &
+        margin-right 5px
+

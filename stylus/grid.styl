@@ -1,0 +1,71 @@
+/**
+ * Grid
+ */
+
+grid_module = true
+
+//
+// Grid system
+//
+
+// Config
+$containerWidth     = 960px
+$containerClass     = 'container'
+
+$rowClass           = 'row'
+
+$columnCount        = 12
+$columnGap          = $gapSize
+$columnClassPrefix  = 'col'
+$columnOffsetPrefix = 'offset'
+$columnWidth        = 100% / $columnCount
+
+// Mixins
+
+container()
+    margin 0 auto
+    max-width $containerWidth
+    clearfix()
+
+offset($offset)
+    margin-left $columnWidth*$offset
+
+column($span = 1, $offset = 0)
+    float left
+    box-sizing border-box
+    offset($offset)
+    padding-left $columnGap
+    padding-right $columnGap
+    width $columnWidth*$span
+    min-height 1px
+
+row()
+    padding $columnGap 0
+    clearfix()
+
+// Default usage
+
+.{$containerClass}
+    container()
+
+.{$rowClass}
+    row()
+    
+    .{$columnClassPrefix}1
+        column(1)
+    
+    for i in 2..$columnCount
+        .{$columnClassPrefix}{i}
+            @extend .{$rowClass} .{$columnClassPrefix}1
+            width $columnWidth*i
+
+    for i in 1...$columnCount
+        .{$columnOffsetPrefix}{i}
+            offset(i)
+    
+    .trim, .ltrim, .alpha
+        padding-left 0
+    .trim, .rtrim, .omega
+        padding-right 0
+         
+

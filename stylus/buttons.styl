@@ -1,0 +1,64 @@
+/**
+ * Buttons
+ */
+
+buttons_module = true
+
+// Mixins
+
+tintButton($class = false, $color = false)
+    if $color
+        background-color $color
+        if dark($color)
+            color #fff
+        else
+            color $textColor
+    
+    &:hover, &.hover
+        background-color lighten($color or @background-color, 20%)
+    &:active
+        background-color lighten($color or @background-color, 10%)
+
+button($block = false)
+    background-color $colorClasses[0][1]
+    border 0
+    border-radius 3px
+    box-sizing border-box
+    box-shadow 0 0 3px #999
+    color $textColor
+    outline 0
+    padding $gapSize
+    text-decoration none
+    font-weight 400
+    vertical-align middle
+    
+    if isBlock
+        display block
+        text-align center
+    else
+        display inline-block
+        &.block
+            display block
+            text-align center
+    
+    &.small, &.tag
+        font-size 80%
+        padding 2px 6px
+        vertical-align middle
+    
+    &.big
+        font-size 150%
+        padding $gapSize*1.5
+    
+    tintButton()
+    applyColors(tintButton)
+
+// Default usage
+    
+.label
+    button()
+
+button, .button
+    @extend .label
+    cursor pointer
+
