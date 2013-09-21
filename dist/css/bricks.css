@@ -13,13 +13,13 @@ a:focus{outline:0}
 a:active,a:hover{outline:0}
 a:link,a:visited{color:#09a0e6;text-decoration:none}
 a:hover{color:#2eb7f7}
-h1,h2,h3,h4,h5,h6{font-family:$featFont;margin:10px 0;line-height:1.2}
+h1,h2,h3,h4,h5,h6{font-family:'Open Sans','Helvetica Neue','Helvetica',sans-serif;margin:10px 0;line-height:1.2}
 h1{font-size:35px}
 h2{font-size:30.800000000000004px}
 h3{font-size:26.599999999999998px}
 h4{font-size:22.400000000000002px}
 h5{font-size:18.2px}
-h6{font-size:$fontSize;text-transform:uppercase}
+h6{font-size:14px;text-transform:uppercase}
 p{margin:0 0 10px;}
 p:last-child{margin:0}
 abbr[title]{border-bottom:1px dotted}
